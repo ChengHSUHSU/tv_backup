@@ -1,0 +1,7 @@
+API Recommendation (related video recommender)
+        
+1. api function
+2. logging     
+3. slack alert
+
+issue #1 : Hot Model Basic Framework

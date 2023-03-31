@@ -1,0 +1,14 @@
+torch
+torchmetrics
+torchvision
+scikit-learn
+numpy
+pandas
+tqdm
+PyYAML
+pymongo
+transformers
+boto3
+jieba
+databricks-sql-connector
+databricks

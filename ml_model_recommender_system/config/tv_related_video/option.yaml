@@ -1,0 +1,24 @@
+reader:
+  get_event_data:
+    sql_path: reader/sql/tv_related_video/event.sql
+    event_data_cols: ['user_id', 'content_id', 'duration', 'datetime']
+    remove_not_int_cols: ['user_id', 'content_id', 'duration']
+
+  get_content_data:
+    sql_path: reader/sql/tv_related_video/content.sql
+    content_data_cols: ['content_id', 'title', 'introduction', 'published_at', 'series_name', 'episode']
+    remove_not_int_cols: ['content_id']
+
+
+aggregator:
+  get_raw_data: null
+  forward: null
+
+
+model:
+  get_aggregator_data: null
+  forward: null
+
+
+dump:
+  database_name: tv_test

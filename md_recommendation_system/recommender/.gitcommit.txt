@@ -1,0 +1,22 @@
+recommender of ZFL
+
+
+
+1. load two config (database, recommender)
+2. data process (user, item, interaction data)
+3. build dataloader (it build adj materix)
+4. modeling and evaluated by {precision, recall, ndcg}@K={20}
+5. reindex inference (due to user_id, item_id not 0-index)
+6. write inference result to database
+7. add cold inference.
+
+Q&A
+how to run recommender?
+=> python3 recommender/run.py
+
+what is peko-peko?
+=> it exist in many corner, 
+    pe-k-o-,  p-e-ko is all you need????
+
+
+Issue: issue#17

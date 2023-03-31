@@ -1,0 +1,14 @@
+log:
+  save_path: './log'
+
+connect_settings:
+  read:
+    host: 172.104.182.11
+    username: read
+    password: 0ukBsHqnGij8l84u
+    port: 47017
+  write:
+    host: 192.168.207.231
+    username: admin
+    password: admin
+    port: 27017

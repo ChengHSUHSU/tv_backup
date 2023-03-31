@@ -1,0 +1,77 @@
+service:
+  name: xindong
+
+log:
+  save_path: './recommender/log'
+
+query_settings:
+  read:
+    database: xindong
+  write:
+    database: 'xindong_inference'
+    database_GridFS:
+      inference_history: 'xindong_inference_history'
+
+dataprocess:
+  func: ContentBaseProcessor
+
+  query_data:
+    history:
+      collect: user_watch_duration
+      query_sp: null
+      time_query_column: null
+
+    meta_history:
+      collect: media_operation
+      query_sp: meta_history
+
+    item:
+      collect: media
+      query_sp: item_query
+
+  build_item_data:
+    column_names: ['ITEM_ID', 'title', 'contentType']
+    column_type:
+      ITEM_ID: 'int'
+      title: 'str'
+      contentType: 'int'
+
+dataloader:
+  func: ContentLoader
+
+model:
+  func: ContentEmbedding
+  bert_model_name: bert-base-chinese
+  device: 'cpu'
+  bpr_batch_size: 4096
+  epoch_num: 1
+  latent_dim_rec: 32
+  lightGCN_n_layers: 3
+  keep_prob: 0.6
+  A_split: False
+  pretrain: 0
+  user_emb: null
+  item_emb: null
+  dropout: False
+  weight_decay: 0.0001
+  lr: 0.01
+  save_path: './models'
+
+trainer:
+  func: ContentRecommendTrainer
+
+
+inference:
+  func: ContentInferencer
+
+  recall_layer:
+    platforms: ['All']
+
+
+write_to_db:
+  All:
+    collect: inferenceAll
+  Random:
+    collect: inferenceRandom
+
+ 

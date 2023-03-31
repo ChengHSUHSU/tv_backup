@@ -1,0 +1,11 @@
+
+
+Tv Related Video Recommender Framework
+
+(1): reader
+(2): aggregator
+(3): tv related video recommender main file (in execution)
+(4): databricks connector
+(5): recommend model design
+
+issue #1 : Tv Related Video Recommender Framework

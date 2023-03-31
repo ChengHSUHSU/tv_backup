@@ -1,0 +1,81 @@
+service:
+  name: zfl
+
+log:
+  save_path: './log'
+
+query_settings:
+  read:
+    database: zfl
+  write:
+    database: 'zfl'
+    database_GridFS:
+      inference_history: 'zfl_inference_history'
+
+dataprocess:
+  func: PersonalizeProcessor
+  train_seq_limit: 2
+  train_val_rate: 0.8
+  inference_topK: 1000
+  warm_rate: 0.5
+  hard_pos_score: 0.8
+  soft_pos_score: 0.5
+  inference_batch_size: 1024
+
+  query_data:
+    history:
+      collect: 'media_history'
+      query_sp: 'time_query'
+      time_query_column: 'updatedAt'
+    item:
+      collect: 'media'
+      query_sp: null
+    user:
+      collect: null
+      query_sp: null
+
+  build_item_data:
+    column_names: ['title', 'tagIds', 'actorIds']
+    column_type:
+      title: 'str'
+      tagIds: 'set'
+      actorIds: 'set'
+  
+  cold_inference:
+    features: ['tagIds']
+    warm_num: 5
+
+dataloader:
+  func: Loader
+  A_split: False
+  A_n_fold: 100
+  used_old_A_mat: False
+  A_mat_path: './models/s_pre_adj_mat.npz'
+
+model:
+  device: 'cpu'
+  bpr_batch_size: 4096
+  epoch_num: 1
+  latent_dim_rec: 32
+  lightGCN_n_layers: 3
+  keep_prob: 0.6
+  A_split: False
+  pretrain: 0
+  user_emb: null
+  item_emb: null
+  dropout: False
+  weight_decay: 0.0001
+  lr: 0.01
+  save_path: './models'
+
+inference:
+  recall_layer:
+    platforms: ['All', 'Random']
+
+
+write_to_db:
+  All:
+    collect: inference-All
+  Random:
+    collect: inference-Random
+

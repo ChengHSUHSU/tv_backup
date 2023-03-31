@@ -1,0 +1,15 @@
+connect_settings:
+  read:
+    host: 13.229.93.144
+    port: 27017
+    username: admin
+    password: admin
+    connectTimeoutMS: 3000
+  write:
+    host: 13.229.93.144
+    port: 27017
+    username: admin
+    password: admin 
+    connectTimeoutMS: 3000
+
+ 

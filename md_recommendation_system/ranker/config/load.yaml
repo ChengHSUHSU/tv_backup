@@ -1,0 +1,35 @@
+connect_settings:
+  read:
+    host: 13.229.93.144
+    port: 27017
+    username: admin
+    password: admin
+    connectTimeoutMS: 3000
+  write:
+    host: 13.229.93.144
+    port: 27017
+    username: admin
+    password: admin 
+    connectTimeoutMS: 3000
+
+bucket_connect_settings:
+  access_info:
+    ACCESS_ID: AKIATNU5J3JAVOHKWMUI
+    ACCESS_KEY: bkpoF4fgcnOymDfS8sEwe2fcVW5M7F7JVUIkAfJ+
+  bucket_info:
+    BUCKET_NAME: databricks-15134c2bb62b3b43d0efcf5e49569c6a-s3-root-bucket
+    OBJECT_NAME: tokyo-prod/6624368804643013/FileStore/recommender/xindong_head
+    FILE_NAME: null
+
+submit_to_bucket:
+  csv_file_path:  ranker/csv_file/
+  prefix_name: xindong_head-
+
+
+submit_to_backend:
+  batch_size:  500
+  backend_api_url_prod: https://api.hlbj.me/api/web/media/recommend/sync
+  backend_api_url_dev: https://xindong.sgp-develop.com/api/web/media/recommend/sync
+  backend_api_url: https://api.hlbj.me/api/web/media/recommend/sync
+  backend_userId: userId
+  backend_rank_itemId: mediaIds

@@ -1,0 +1,29 @@
+connect_settings:
+  read:
+    host: 172.31.98.107:27017,172.31.98.190:27017,172.31.98.6
+    username: admin
+    password: y3aJOBqfxsHu
+    port: 27017
+    connectTimeoutMS: 3000
+  write:
+    host: 13.229.93.144
+    username: admin
+    password: admin
+    port: 27017
+    connectTimeoutMS: 3000
+
+bucket_connect_settings:
+  access_info:
+    ACCESS_ID: AKIATNU5J3JAVOHKWMUI
+    ACCESS_KEY: bkpoF4fgcnOymDfS8sEwe2fcVW5M7F7JVUIkAfJ+
+  bucket_info:
+    BUCKET_NAME: databricks-15134c2bb62b3b43d0efcf5e49569c6a-s3-root-bucket
+    OBJECT_NAME: tokyo-prod/6624368804643013/FileStore/recommender/xindong_head
+    FILE_NAME: null
+    CSV_FILE_PATH: /user_watch_duration/xindong_event.csv
+
+submit_to_bucket:
+  csv_file_path:  ranker/csv_file/
+  prefix_name: xindong_head-
+ 
+

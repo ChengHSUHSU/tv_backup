@@ -1,0 +1,28 @@
+
+
+
+
+
+connect_settings:
+  xindong123:
+    host: 172.31.98.107:27017,172.31.98.190:27017,172.31.98.6
+    username: admin
+    password: y3aJOBqfxsHu
+    port: 27017
+    connectTimeoutMS: 3000
+
+  xindong_inference:
+    host: 13.229.93.144
+    username: admin
+    password: admin
+    port: 27017
+    connectTimeoutMS: 3000
+
+  xindong:
+    host: 13.229.93.144
+    username: admin
+    password: admin
+    port: 27017
+    connectTimeoutMS: 3000
+
+

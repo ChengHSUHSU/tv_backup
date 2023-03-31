@@ -1,0 +1,38 @@
+service:
+  name: xindong
+
+log:
+  save_path: './ranker/log'
+
+query_settings:
+  read:
+    database: xindong_inference
+  write:
+    database: xindong_log
+
+dataloader:
+  query_data:
+    item2item:
+      collect: All/item2item_rank
+      query_sp: null
+      time_query_column: null
+
+    meta_history:
+      collect: All/user2meta_history
+      query_sp: null
+      time_query_column: null
+
+    history:
+      collect: All/user2history
+      query_sp: null
+      time_query_column: null
+
+    item:
+      collect: media
+      query_sp: null
+      time_query_column: null
+
+submit_to_bucket:
+  csv_file_path:  ranker/csv_file/
+  prefix_name: xindong_head-
+ 

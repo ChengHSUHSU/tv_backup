@@ -1,0 +1,155 @@
+log:
+  save_path: './db_query/log'
+
+
+query_settings:
+  database: xindong
+
+
+collections:
+  names: ['media', 'media_operation', 'search_log', 'user_watch_duration']
+
+  remove_all:
+    media: True
+    media_operation: True
+    search_log: True
+    user_watch_duration: True
+
+  to_database:
+    media: True
+    media_operation: True
+    search_log: True
+    user_watch_duration: True
+
+  to_bucket:
+    media: False
+    media_operation: False
+    search_log: False
+    user_watch_duration: False
+  
+  id_name:
+    media: [{old: '_id', new: 'ITEM_ID'}]
+  
+    media_operation: [
+                      {old: 'userId', new: 'USER_ID'},
+                      {old: 'objectId', new: 'ITEM_ID'}
+                     ]
+
+    search_log: [{old: 'userId', new: 'USER_ID'}]
+
+    user_watch_duration: [
+                          {old: 'userId', new: 'USER_ID'},
+                          {old: 'videoId', new: 'ITEM_ID'}
+                         ]
+
+  time_query:
+    media: null
+    search_log: null
+    
+    media_operation: 
+      col_name: 'updatedAt'
+      query_start: 
+        date: ''
+        adjust_year: '+0'
+        adjust_month: '-1'
+        adjust_day: '+0'
+      query_end:
+        date: ''
+        adjust_year: '0'
+        adjust_month: '0'
+        adjust_day: '0'
+
+    user_watch_duration: 
+      col_name: 'createdAt'
+      query_start: 
+        date: ''
+        adjust_year: '+0'
+        adjust_month: '+0'
+        adjust_day: '-7'
+      query_end:
+        date: ''
+        adjust_year: '0'
+        adjust_month: '0'
+        adjust_day: '0'
+
+  columns:
+    media: ['_id', 
+            'title', 
+            'contentType', 
+            'addedTime',
+            'tags', 
+            'publishName',
+            'playTime',
+            'createdAt',
+            'coverType',
+            'updatedAt']
+
+    media_operation: ['userId', 
+                      'objectId', 
+                      'contentType', 
+                      'historyType',
+                      'createdAt',
+                      'updatedAt']
+
+    search_log: ['userId', 
+                 'type', 
+                 'subType', 
+                 'content',
+                 'hitNum',
+                 'createdAt',
+                 'updatedAt']
+
+    user_watch_duration: ['userId', 
+                          'videoId', 
+                          'createdAt']
+
+join_mapping:
+  media: [
+          {
+           collect: 'media_tag',
+           left_key: 'tags',
+           right_key: '_id',
+           format: 'list',
+           added_columns: ['_id', 'name'],
+           hard_code: False
+          }
+         ]
+  media_operation: []
+  search_log: []
+  user_watch_duration: []
+
+
+
+hard_code_mapping:
+  contentType:
+    0 : '無意義'
+    1: '短視頻' 
+    2: '長視頻'
+    3: '漫畫'
+    4: '寫真'
+    6: '季節/合集'
+    11: '帖子'
+    12: '評論'
+    13: '人'
+    14: '上門'
+    15: '樓風'
+    16: '商家'
+    20: '女優'
+    21: '廠商'
+    22: '標籤'
+    23: '專題'
+  
+  operationType:
+    0: '無意義'
+    1: '觀看'
+    2: '收藏'
+    3: '購買'
+    4: '評論'
+    5: '分享'
+    6: '舉報'
+    7: '下載'
+    8: '影片催促上架'
+    9: '用戶打標籤'
+    11: '預售'
+
+#      collections.media      'addedTime', 'published_id'

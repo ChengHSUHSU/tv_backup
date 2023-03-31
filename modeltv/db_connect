@@ -1,0 +1,6 @@
+mysql:
+  hostname: modeltv-release.cluster-ro-ckosb3gyldzv.ap-northeast-1.rds.amazonaws.com
+  username: admin
+  password: 3fmXH6zys7spvu9e
+  database: model_tv
+  port: 3306

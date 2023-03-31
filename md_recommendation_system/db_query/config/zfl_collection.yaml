@@ -1,0 +1,153 @@
+query_settings:
+  database: zfl
+
+
+collections:
+  names: ['media_history', 'media']
+
+  remove_all:
+    media: True
+    media_history: False
+  
+  id_name:
+    media: [
+            {old: '_id', new: 'ITEM_ID'}
+           ]
+    media_history: [
+                    {old: 'userId', new: 'USER_ID'},
+                    {old: 'objectId', new: 'ITEM_ID'},
+                   ]
+
+  time_query:
+    media: null
+    media_history: 'updatedAt'
+
+  columns:
+    media_history: ['updatedAt', 
+                    'userId', 
+                    'objectId', 
+                    'contentType', 
+                    'operationType']
+    media: ['_id', 
+            'nationalId', 
+            'title', 
+            'contentType', 
+            'tagIds', 
+            'companyIds', 
+            'actorIds',
+            'playTime',
+            'height',
+            'width',
+            'weekWatchs',
+            'wonthWatchs',
+            'bango',
+            'coverType',
+            'real',
+            'status',
+            'price',
+            'seasonIds']
+
+
+join_mapping:
+  media_history: [
+          {
+           collect: 'contentType',
+           left_key: 'contentType',
+           right_key: '',
+           format: 'int',
+           added_columns: [],
+           hard_code: True
+          },
+          {
+           collect: 'operationType',
+           left_key: 'operationType',
+           right_key: '',
+           format: 'int',
+           added_columns: [],
+           hard_code: True
+          },          
+         ]
+  media: [
+          {
+           collect: 'national',
+           left_key: 'nationalId',
+           right_key: '_id',
+           format: 'int',
+           added_columns: ['_id', 'name'],
+           hard_code: False
+          },
+          {
+           collect: 'media_tag',
+           left_key: 'tagIds',
+           right_key: '_id',
+           format: 'list',
+           added_columns: ['_id', 'name', 'desc', 'parentId'],
+           hard_code: False
+          },
+          {
+           collect: 'media_company',
+           left_key: 'companyIds',
+           right_key: '_id',
+           format: 'list',
+           added_columns: ['_id', 'name', 'real'],
+           hard_code: False
+          },
+          {
+           collect: 'media_actor',
+           left_key: 'actorIds',
+           right_key: '_id',
+           format: 'list',
+           added_columns: ['_id', 'name', 'nationalId', 'tagIds'],
+           hard_code: False
+          },
+          {
+           collect: 'season',
+           left_key: 'seasonIds',
+           right_key: '_id',
+           format: 'list',
+           added_columns: ['_id', 'contentType', 'name', 'episodes', 'real'],
+           hard_code: False
+          },
+          {
+           collect: 'contentType',
+           left_key: 'contentType',
+           right_key: '',
+           added_columns: [],
+           format: 'int',
+           hard_code: True
+          },
+         ]
+
+hard_code_mapping:
+  contentType:
+    0 : '無意義'
+    1: '短視頻' 
+    2: '長視頻'
+    3: '漫畫'
+    4: '寫真'
+    6: '季節/合集'
+    11: '帖子'
+    12: '評論'
+    13: '人'
+    14: '上門'
+    15: '樓風'
+    16: '商家'
+    20: '女優'
+    21: '廠商'
+    22: '標籤'
+    23: '專題'
+  
+  operationType:
+    0: '無意義'
+    1: '觀看'
+    2: '收藏'
+    3: '購買'
+    4: '評論'
+    5: '分享'
+    6: '舉報'
+    7: '下載'
+    8: '影片催促上架'
+    9: '用戶打標籤'
+    11: '預售'
+
+#      collections.media      'addedTime', 'published_id'
